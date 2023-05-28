@@ -134,6 +134,19 @@ function layThongTinNV(isAdd) {
   return nhanVien;
 }
 
+getEle("btnThem").addEventListener("click", function () {
+  getEle("tknv").disabled = false;
+
+  getEle("tknv").value = "";
+  getEle("name").value = "";
+  getEle("email").value = "";
+  getEle("password").value = "";
+  getEle("datepicker").value = "";
+  getEle("luongCB").value = "";
+  getEle("chucVu").value = "";
+  getEle("gioLam").value = "";
+});
+
 // Thêm nhân viên
 getEle("btnThemNV").addEventListener("click", function () {
   var nhanVien = layThongTinNV(true);
@@ -141,6 +154,15 @@ getEle("btnThemNV").addEventListener("click", function () {
   if (nhanVien) {
     // Thêm nhân viên vào mảng arr
     dsnv._themNV(nhanVien);
+
+    getEle("tknv").value = "";
+    getEle("name").value = "";
+    getEle("email").value = "";
+    getEle("password").value = "";
+    getEle("datepicker").value = "";
+    getEle("luongCB").value = "";
+    getEle("chucVu").value = "";
+    getEle("gioLam").value = "";
 
     // Gọi hàm setLocalStorage để lưu data
     setLocalStorage();
@@ -182,6 +204,8 @@ function xoaNV(taiKhoan) {
 function suaNV(taiKhoan) {
   var nv = dsnv._layThongTinNV(taiKhoan);
   if (nv) {
+    getEle("btnCapNhat").disabled = false;
+
     getEle("tknv").value = nv.taiKhoan;
     getEle("tknv").disabled = true;
     getEle("name").value = nv.hoTen;
